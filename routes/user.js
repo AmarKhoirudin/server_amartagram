@@ -105,4 +105,13 @@ router.put("/update-picture", requireLogin,upload, async(req,res) => {
   }
 })
 
+router.post("/search-user",(req,res) => {
+  const userPattern = new RegExp("^"+ req.body.query);
+  Users.find({name : {$regex: userPattern}})
+    .select("_id name picture")
+    .then(user => {
+      res.json({user})
+    }). catch(err => res.status(422).json({error: err}));
+})
+
 module.exports = router;

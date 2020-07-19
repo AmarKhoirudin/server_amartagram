@@ -19,6 +19,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "images/user.svg"
   },
+  resetToken: {
+    type: String
+  },
+  expiredToken : {
+    type: Date
+  },
   following: [{type: ObjectId, ref: "User"}],
   followers: [{type: ObjectId, ref: "User"}]
 });

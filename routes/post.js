@@ -10,8 +10,9 @@ router.get("/allpost",requireLogin, (req, res) => {
     .populate("postedBy", "_id name")
     .populate("like", "_id")
     .populate("comments.postedBy", "_id name")
+    .sort("-createdAt")
     .then((posts) => res.json(posts))
-    .catch((err) => console.log(err));
+    .catch((err) => res.status(500).json({error: err}));
 });
 
 router.get("/getsubpost",requireLogin, (req, res) => {
@@ -19,8 +20,9 @@ router.get("/getsubpost",requireLogin, (req, res) => {
     .populate("postedBy", "_id name")
     .populate("like", "_id")
     .populate("comments.postedBy", "_id name")
+    .sort("-createdAt")
     .then((posts) => res.json(posts))
-    .catch((err) => console.log(err));
+    .catch((err) => res.status(500).json({error: err}));
 });
 
 router.post("/createpost", requireLogin, upload, (req, res) => {
