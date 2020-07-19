@@ -23,6 +23,10 @@ app.use(require("./routes/auth"));
 app.use(require("./routes/post"));
 app.use(require("./routes/user"));
 
+app.get("/", (req,res) => {
+    res.send("Hello World");
+})
+
 const PORT = process.env.PORT ||5000;
 
 // if(process.env.NODE_ENV === "production"){
